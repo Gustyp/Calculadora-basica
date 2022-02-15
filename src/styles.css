@@ -1,0 +1,119 @@
+/* Reset general de estilos */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: url(https://fondosmil.com/fondo/58911.jpg);
+    backdrop-filter: blur(4px);
+    font-size: 16px;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container__titulo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 10vh;
+    font-size: 42px;
+    margin-bottom: .5em;
+    -webkit-text-stroke: 1px #000;
+    color: #eeeeee;
+}
+
+.wrapper {
+    background-color: #20242e;
+    width: 80%;
+    max-width: 400px;
+}
+
+.screen {
+    color: #ffff;
+    font-family: "Courier New", Courier, monospace;
+    font-size: 2.5em;
+    text-align: right;
+    padding: .5em;
+}
+
+#calc-buttons {
+    border: 5px ridge #9b2b6c;
+}
+
+.calc-button-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5%;
+}
+
+.calc-button {
+    color: #20242e;
+    background-color: #b6ceff;
+    flex-basis: 24.5%;
+    font-size: 2.5em;
+    height: 2em;
+    border: none;
+    cursor: pointer;
+}
+
+.calc-button:hover {
+    background-color: #9cb1da;
+}
+
+.calc-button:active {
+    background-color: #7c8cac;
+}
+
+.double {
+    flex-basis: 49.7%;
+}
+
+.triple {
+    flex-basis: 74.8%;
+}
+
+.calc-button:last-child {
+    color: white;
+    background-color: #f845ad;
+}
+
+.calc-button:last-child:hover {
+    background-color: #b6327f;
+}
+
+.calc-button:last-child:active {
+    background-color: #9b2b6c;
+}
+
+.calc-button-row:last-child {
+    padding-bottom: 0;
+}
+
+footer {
+    position: fixed;
+    width: 100%;
+    font-size: 14px;
+    bottom: 0;
+}
+
+.container-info{
+    display: flex;
+    justify-content: center;
+    color:#eeeeee;
+    background-color: rgb(0, 0, 0);
+    text-decoration: none;
+}
+
+a {
+    text-decoration: none;
+    color: #eeeeee;
+}
