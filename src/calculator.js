@@ -6,6 +6,7 @@ class Calculadora {
     static operacionTotal = 0;
     static previousOperator;
     static valorActual = "0";
+    static valorAnterior = "0";
 
 
     static buttonClick = e => {
@@ -33,17 +34,16 @@ class Calculadora {
                 "×": intValorActual => this.multiplicar(intValorActual),
                 "÷": intValorActual => this.dividir(intValorActual)
             }
-            console.log(`El error es ${operations[this.previousOperator]} porque el valor del operador es ${this.previousOperator} y el valor actual es ${intValorActual}`)
             return operations[this.previousOperator](intValorActual);
         }
     }
 
     static resultado = () => {
         if (this.valorActual !== "0"){
-            (this.flushOperation(parseInt(this.valorActual)), 
-            this.previousOperator = null, 
-            this.valorActual = +this.operacionTotal) 
-        } 
+            (this.flushOperation(parseInt(this.valorActual)));
+            this.previousOperator = null; 
+            this.valorActual = +this.operacionTotal;
+        }
     }
 
     static borrar = () => {
@@ -54,36 +54,36 @@ class Calculadora {
     static handleSymbol = value => {
 
         if (value.length === 1){
-            const operations = {
-                "C": value => this.borrarTotal(value),
-                "=": value => this.resultado(value),
-                "←": value => this.borrar(value),
-                "+": value => this.handleMath(value),
-                "-": value => this.handleMath(value),
-                "×": value => this.handleMath(value),
-                "÷": value => this.handleMath(value),
-            }
-            return operations[value](value);
+                const operations = {
+                    "C": value => this.borrarTotal(value),
+                    "=": value => this.resultado(value),
+                    "←": value => this.borrar(value),
+                    "+": value => this.handleMath(value),
+                    "-": value => this.handleMath(value),
+                    "×": value => this.handleMath(value),
+                    "÷": value => this.handleMath(value),
+                }
+                return operations[value](value);
         }
     }
 
     static handleNumber = value => {
-        (this.valorActual === '0') ? this.valorActual = value : this.valorActual += value;
+        if (this.valorActual.length < 11) return (this.valorActual === '0') ? this.valorActual = value : this.valorActual += value;        
     }
 
-    static handleMath = value => {    
+    static handleMath = value => {   
         if (this.valorActual === "0") return;
-        const intValorActual = parseInt(this.valorActual);
+        const intValorActual = Number(this.valorActual);
 
         (this.operacionTotal === 0) ? this.operacionTotal = intValorActual : this.flushOperation(intValorActual);
+        this.valorActual += value;
         this.previousOperator = value;
         this.valorActual = "0";
     }
 
-    static actualizar = () => {
-        if (isNaN(this.valorActual)) return this.valorActual = 0;        
+    static actualizar = () => {     
         const screen = document.querySelector("#screen");
-        screen.innerHTML = Number(this.valorActual);
+        screen.innerHTML = this.valorActual;
     }
 };
 
